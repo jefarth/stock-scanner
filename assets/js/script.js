@@ -3,7 +3,7 @@ const $searchBtn = $(`#searchBtn`);
 const $searchStock = $(`#searchStock`);
 const $stockGraph = $(`#stockGraph`);
 // API Key
-const stockKey = `&apikey=BF997UXSJ2Q4JW3Y`;
+const stockKey = `&apikey=0GM6A49EJPD85AOD`;
 // Store user's searched stock symbols value
 var searchSymbol = $searchStock.val();
 
@@ -66,7 +66,7 @@ $searchBtn.on(`click`, async function(event) {
 
 function getStock() {
   // Stock Graph API URL
-  const graphAPI = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=` + searchSymbol + `&outputsize=compact` + stockKey;
+  const graphAPI = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=` + searchSymbol + `&outputsize=compact` + stockKey;
 
   return $.ajax({
     url: graphAPI,
@@ -154,10 +154,6 @@ function displayStock(response) {
 }
 
 function saveData(response) {
-
-  // Show search history
-  $(`.card`).removeClass(`hide`);
-
   if (response === 404) {
     // Remove old graph
     $stockGraph.children().remove();
